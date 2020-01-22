@@ -10,8 +10,10 @@ class PedidoCadastrar{
            
      if (isset($_SESSION['clienteid'])){ 
         $this->efetuarPedido();
+        
         header("location:".$url."/pedido/pagamento");
      }else{ 
+         
             $_SESSION['url'] = $url."/pedido/finalizar";
             
             header("location: ".$url." /login/cliente");
@@ -32,6 +34,10 @@ class PedidoCadastrar{
                  $this->msg = $DAO->cadastrar($obj,$_SESSION['carrinho']);
 
                  echo $this->msg;
+
+                 if(isset($_SESSION['url'])){
+                     unset($_SESSION['url']);
+                 }
 
             }catch(Exception $e){ 
                 $this->msg = $e->getMessage();

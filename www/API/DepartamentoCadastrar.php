@@ -19,6 +19,8 @@ class DepartamentoCadastrar{
             $DAO = new DAODepartamento();
             $this->msg = $DAO->cadastrar($obj);
 
+            
+
         }catch(\Exception $e){
             $this->msg = $e->getMessage();
         

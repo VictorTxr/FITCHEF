@@ -1,11 +1,13 @@
-<?php require_once "FRONT-header.php"; ?>
+<?php require_once "FRONT-header.php"; 
+?>
 
 	
 		<div class="login-container login-form-1">
-            <?php echo $_SESSION['url']; ?>
+            
                     <h3>Login</h3>
+                    
                     <?php include "mensagem.php"; ?>
-                    <form method="post" action="<?php echo $url; ?>/login/cliente">
+                    <form action="<?php echo $url."/login/cliente"; ?>" method="post" >
                         <div class="form-group">
                             <input type="text" name="email" class="form-control" placeholder="Seu Email *" value="" />
                         </div>

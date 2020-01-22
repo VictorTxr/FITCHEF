@@ -1,9 +1,17 @@
 <?php include "FRONT-header.php" ?>
 
-
-       
+<div class="pagamento-container pagamento-form " style= "margin-bottom: -100px; background-color:#8EA84A;">
+     <h1 style="color:white;">Dados da compra</h1>
+	 <table style= "width:100%;">
+	 <tr style="color:white;">
+	 	<td>Total:R$ <?php echo $pagamento->getTotal();?><td>
+	 	<td>Frete:R$ <?php echo $pagamento->getFrete();?><td>
+		 <td>Entrega:<?php echo $pagamento->getDias(); ?> dias<td>
+	 </tr>
+	 </table>
+</div>
 <div class="pagamento-container pagamento-form">
-<?php echo $_SESSION['idpedido']; ?>
+
 		<h3> Informações de pagamento </h3>
 <article class="card">
 <div class="card-body p-5">
@@ -25,7 +33,7 @@
 
 	<form role="form">
 	<div class="form-group">
-		<label for="username">Nome (Como no cartão)</label>
+		<label for="username">Nome (Nome impresso no cartão)</label>
 		<input type="text" class="form-control" name="username" placeholder="" required="">
 	</div> <!-- form-group.// -->
 

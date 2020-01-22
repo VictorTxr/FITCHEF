@@ -10,7 +10,7 @@ class ClienteLogar{
     public $msg;
 
     function __construct($url){
-     
+  
         if($_POST['email']){
 
     
@@ -26,7 +26,7 @@ class ClienteLogar{
 
            $DAO = new DAOCliente();
            $result = $DAO->buscaPorEmailSenha($obj);
-           $this->verificaUrl($url);
+          
            
            if($result){
             
@@ -45,20 +45,8 @@ class ClienteLogar{
         }
     }
 }
-            function verificaurl($url){ 
-
-                if(isset($_SESSION['url'])){ 
-
-                    $url2 = $_SESSION['url'];
-                    //unset($_SESSION['url']);
-                    header("location: ". $url2."/pagamento/finalizar");
-
-                     }else{ 
-                        // header("location: ".$url. "/painel/cliente");
-            
-        
-                }
-    }
+         
+ 
     
 }
 

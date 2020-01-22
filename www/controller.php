@@ -221,10 +221,11 @@
 
 
         case 'pedidopagamento':
-            //$obj = new \FITCHEF\EfetuarPagamento($url);
+           
             //$obj = new \FITCHEF\DepartamentoListar;
             //$lista = $obj->lista;
-
+            $obj = new \FITCHEF\API\PagamentoVisualizar;
+            $pagamento = $obj->pagamento;
             $view= 'FRONT-pagamento.php'; //PÁGINA LOGIN CLIENTE
          break;
 

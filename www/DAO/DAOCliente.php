@@ -90,12 +90,14 @@ use FITCHEF\Model\Usuario;
         }
 
         public function buscaPorEmailSenha(Cliente $cliente){
+            
             $sql = "SELECT * FROM cliente WHERE email = :email AND senha = :senha";
 
             $con = Conexao::getInstance()->prepare($sql);
             $con->bindValue(":email", $cliente->getEmail());
             $con->bindValue(":senha", $cliente->getSenha());
             $con->execute();
+
 
 
 

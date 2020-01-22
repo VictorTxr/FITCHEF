@@ -1,5 +1,4 @@
 <?php
-
 namespace FITCHEF\DAO;
 
 use FITCHEF\Model\Conexao;
@@ -55,24 +54,58 @@ use FITCHEF\Model\Carrinho;
       public function listarPedidoCliente($idCliente){
 
         $sql = "SELECT 
-        pedido.data_pedido,
-        SUM(produto.preco*item.quantidade) as total
-    
-        FROM pedido
-        INNER JOIN cliente
-        ON pedido.fk_cliente = cliente.pk_cliente;
+          pedido.data_pedido,
+          SUM(produto.preco*item.quantidade) as total
+      
+          FROM pedido
+          INNER JOIN cliente
+          ON pedido.fk_cliente = cliente.pk_cliente;
 
-        inner join item
-        on item.fk_pedido = pedido.pk_pedido
+          inner join item
+          on item.fk_pedido = pedido.pk_pedido
 
-        inner join produto
-        on produto.pk_produto = item.fk_produto
+          inner join produto
+          on produto.pk_produto = item.fk_produto
 
-        where cliente.pk_cliente = :id";
-      $con = Conexao::getInstance()->prepare($sql);
-      $con->bindValue(":id", $idCliente);
-      $result = $con->execute();
+          where cliente.pk_cliente = :id";
 
+        $con = Conexao::getInstance()->prepare($sql);
+        $con->bindValue(":id", $idCliente);
+        $result = $con->execute();
 
       }
-    }
+      
+      function buscaPorId($idPedido){
+        $sql = "select 
+        pedido.data_pedido,
+        pedido.frete,
+        pedido.dias,
+        sum(produto.preco*item.quantidade) as total
+        
+          from pedido inner join cliente
+          on pedido.fk_cliente = cliente.pk_cliente
+          inner join item
+          on item.fk_pedido = pedido.pk_pedido
+          inner join produto
+          on produto.pk_produto = item.fk_produto
+          where pedido.pk_pedido = :id";
+
+       
+          $con= Conexao::getInstance()->prepare($sql);
+          $con->bindValue(":id",  $idPedido);
+          
+          $result= $con->execute();
+
+          $obj = $con->fetch(\PDO::FETCH_ASSOC);
+
+          $pedido= new Pedido();
+          $pedido->setDias($obj['dias']);
+          $pedido->setFrete($obj['frete']);
+          $pedido->setTotal($obj['total']);
+    
+
+          return $pedido;
+          
+        }
+      }
+    

@@ -8,6 +8,9 @@ class Pedido{
     private $frete;
     private $dias;
     private $cliente;
+    private $total;
+
+
 
     function __construct(){
     }
@@ -20,6 +23,16 @@ class Pedido{
         public function setId($id){
             $this->id = $id;
         }
+
+
+        public function getTotal(){
+            return $this->total;
+        }
+    
+        public function setTotal($total){
+            $this->total = $total;
+        }
+    
     
         public function getData(){
             return $this->data;
